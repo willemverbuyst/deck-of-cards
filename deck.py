@@ -1,4 +1,5 @@
 from card import Card
+from random import shuffle
 
 
 class Deck:
@@ -15,6 +16,8 @@ class Deck:
     def count(self):
         return len(self.cards)
 
-
-deck = Deck()
-print(deck)
+    def shuffle(self):
+        if self.count() != 52:
+            raise ValueError("Only full decks can be shuffled")
+        shuffle(self.cards)
+        return self
