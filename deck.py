@@ -21,3 +21,18 @@ class Deck:
             raise ValueError("Only full decks can be shuffled")
         shuffle(self.cards)
         return self
+
+    def _deal(self, number_of_cards):
+        if self.count() == 0:
+            raise ValueError("All cards have been dealt")
+        else:
+            amount = min(self.count(), number_of_cards)
+            cards = self.cards[-(amount):]
+            self.cards = self.cards[:-(amount)]
+            return cards
+
+    def deal_card(self):
+        return self._deal(1)[0]
+
+    def deal_hand(self, number_of_cards):
+        return self._deal(number_of_cards)
